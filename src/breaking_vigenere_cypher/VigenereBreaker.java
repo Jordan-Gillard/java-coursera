@@ -5,8 +5,11 @@ import edu.duke.*;
 
 public class VigenereBreaker {
     public String sliceString(String message, int whichSlice, int totalSlices) {
-        //REPLACE WITH YOUR CODE
-        return "WRITE ME!";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=whichSlice; i<message.length(); i+=totalSlices) {
+            stringBuilder.append(message.charAt(i));
+        }
+        return stringBuilder.toString();
     }
 
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
