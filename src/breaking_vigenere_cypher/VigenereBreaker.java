@@ -14,12 +14,18 @@ public class VigenereBreaker {
 
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
         int[] key = new int[klength];
-        //WRITE YOUR CODE HERE
+        CaesarCracker caesarCracker = new CaesarCracker(mostCommon);
+        for (int i=0; i<klength; i++) {
+            String slicedString = sliceString(encrypted, i, klength);
+            int sliceKey = caesarCracker.getKey(slicedString);
+            key[i] = sliceKey;
+        }
         return key;
     }
 
-    public void breakVigenere () {
-        //WRITE YOUR CODE HERE
+    public String breakVigenere (String encryptedMessage, int klength, char mostCommon) {
+        int[] keys = tryKeyLength(encryptedMessage, klength, mostCommon);
+        VigenereCipher vc = new VigenereCipher(keys);
+        return vc.decrypt(encryptedMessage);
     }
-    
 }
