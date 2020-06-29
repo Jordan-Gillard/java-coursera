@@ -1,4 +1,5 @@
-import edu.duke.*;
+package breaking_vigenere_cypher;
+
 import java.util.*;
 
 public class VigenereCipher {

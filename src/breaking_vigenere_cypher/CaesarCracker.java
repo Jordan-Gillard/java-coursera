@@ -1,4 +1,4 @@
-import edu.duke.*;
+package breaking_vigenere_cypher;
 
 public class CaesarCracker {
     char mostCommon;
