@@ -15,4 +15,22 @@ class CaesarCipherTest {
         String decryptedMessage = cc.decrypt(encryptedMessage);
         assertEquals(decryptedMessage, message);
     }
+
+    @Test
+    public void testEncryptLetter() {
+        char letter = 'a';
+        char expectedLetter = 'c';
+        CaesarCipher cc = new CaesarCipher(2);
+        char encryptedLetter = cc.encryptLetter(letter);
+        assertEquals(expectedLetter, encryptedLetter);
+    }
+
+    @Test
+    public void testDecryptLetter() {
+        char letter = 'c';
+        char expectedLetter = 'a';
+        CaesarCipher cc = new CaesarCipher(2);
+        char decryptedLetter = cc.decryptLetter(letter);
+        assertEquals(expectedLetter, decryptedLetter);
+    }
 }
