@@ -3,6 +3,9 @@ package breaking_vigenere_cypher;
 import edu.duke.FileResource;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class VigenereBreakerTest {
@@ -40,5 +43,28 @@ class VigenereBreakerTest {
         VigenereBreaker vb = new VigenereBreaker();
         String decryptedMessage = vb.breakVigenere(encryptedMessage, 5, 'e');
         assertEquals(expectedMessage, decryptedMessage);
+    }
+
+    @Test
+    void quiz1() {
+        int keyLength = 4;
+        char mostCommon = 'e';
+        String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/secretmessage1.txt").asString();
+        VigenereBreaker vb = new VigenereBreaker();
+        int[] keys = vb.tryKeyLength(encryptedMessage, keyLength, mostCommon);
+        System.out.println(Arrays.toString(keys));
+
+        String decryptedMessage = vb.breakVigenere(encryptedMessage, keyLength, mostCommon);
+        System.out.println(decryptedMessage);
+    }
+
+    @Test
+    void readDictionary() {
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        HashSet<String> englishDictionary = vb.readDictionary(fr);
+        assertEquals(72053, englishDictionary.size());
+        assertTrue(englishDictionary.contains("undermining"));
+        assertTrue(englishDictionary.contains("abrupt"));
     }
 }
