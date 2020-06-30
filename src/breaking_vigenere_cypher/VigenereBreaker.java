@@ -38,4 +38,14 @@ public class VigenereBreaker {
         }
         return wordsInDictionary;
     }
+
+    public int countWords(String message, HashSet<String> dictionary) {
+        int wordCount = 0;
+        for (String word : message.split("\\W+")) {
+            if (dictionary.contains(word.toLowerCase())) {
+                wordCount += 1;
+            }
+        }
+        return wordCount;
+    }
 }
