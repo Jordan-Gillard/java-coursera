@@ -54,6 +54,7 @@ public class VigenereBreaker {
     public String breakForLanguage(String message, HashSet<String> dictionary) {
         int numberOfDifferentKeysToTry = 100;
         int bestWordCount = -1;
+        int bestKey = -1;
         String decryptedMessage = "";
         for (int key=1; key<=numberOfDifferentKeysToTry; key++) {
             int[] keys = tryKeyLength(message, key, 'e');
@@ -62,9 +63,12 @@ public class VigenereBreaker {
             int wordCount = countWords(attemptedDecryptedMessage, dictionary);
             if (wordCount > bestWordCount) {
                 bestWordCount = wordCount;
+                bestKey = key;
                 decryptedMessage = attemptedDecryptedMessage;
             }
         }
+        System.out.println("Word Count: " + bestWordCount);
+        System.out.println("Key length: " + bestKey);
         return decryptedMessage;
     }
 }
