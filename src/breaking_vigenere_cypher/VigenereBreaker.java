@@ -48,4 +48,21 @@ public class VigenereBreaker {
         }
         return wordCount;
     }
+
+    public String breakForLanguage(String message, HashSet<String> dictionary) {
+        int numberOfDifferentKeysToTry = 100;
+        int bestWordCount = -1;
+        String decryptedMessage = "";
+        for (int key=1; key<=numberOfDifferentKeysToTry; key++) {
+            int[] keys = tryKeyLength(message, key, 'e');
+            VigenereCipher vc = new VigenereCipher(keys);
+            String attemptedDecryptedMessage = vc.decrypt(message);
+            int wordCount = countWords(attemptedDecryptedMessage, dictionary);
+            if (wordCount > bestWordCount) {
+                bestWordCount = wordCount;
+                decryptedMessage = attemptedDecryptedMessage;
+            }
+        }
+        return decryptedMessage;
+    }
 }

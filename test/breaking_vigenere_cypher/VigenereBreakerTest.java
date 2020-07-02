@@ -63,4 +63,15 @@ class VigenereBreakerTest {
         int wordCount = vb.countWords(message, englishDictionary);
         assertEquals(39, wordCount);
     }
+
+    @Test
+    void breakForLanguage() {
+        String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
+        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        VigenereBreaker vb = new VigenereBreaker();
+        HashSet<String> englishDictionary = vb.readDictionary(fr);
+        String unencryptedMessage = vb.breakForLanguage(encryptedMessage, englishDictionary);
+        String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
+        assertEquals(expected, unencryptedMessage);
+    }
 }
