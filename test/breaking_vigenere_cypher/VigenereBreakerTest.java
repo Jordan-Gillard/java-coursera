@@ -36,15 +36,6 @@ class VigenereBreakerTest {
     }
 
     @Test
-    void breakVigenere() {
-        String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
-        String expectedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
-        VigenereBreaker vb = new VigenereBreaker();
-        String decryptedMessage = vb.breakVigenere(encryptedMessage, 5, 'e');
-        assertEquals(expectedMessage, decryptedMessage);
-    }
-
-    @Test
     void readDictionary() {
         VigenereBreaker vb = new VigenereBreaker();
         FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");

@@ -24,10 +24,12 @@ public class VigenereBreaker {
         return key;
     }
 
-    public String breakVigenere(String encryptedMessage, int klength, char mostCommon) {
-        int[] keys = tryKeyLength(encryptedMessage, klength, mostCommon);
-        VigenereCipher vc = new VigenereCipher(keys);
-        return vc.decrypt(encryptedMessage);
+    public void breakVigenere() {
+        String encryptedMessage = new FileResource().asString();
+        FileResource dictionaryFileResource = new FileResource();
+        HashSet<String> dictionary = readDictionary(dictionaryFileResource);
+        String decryptedMessage = breakForLanguage(encryptedMessage, dictionary);
+        System.out.println(decryptedMessage);
     }
 
     public HashSet<String> readDictionary(FileResource fr) {
