@@ -65,4 +65,18 @@ class VigenereBreakerTest {
         String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
         assertEquals(expected, unencryptedMessage);
     }
+
+    @Test
+    void mostCommonCharIn() {
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        HashSet<String> englishDictionary = vb.readDictionary(fr);
+        char mostCommonChar = vb.mostCommonCharIn(englishDictionary);
+        assertEquals('e', mostCommonChar);
+
+        fr = new FileResource("breaking_vigenere_cypher/dictionaries/Portuguese");
+        HashSet<String> portugueseDictionary = vb.readDictionary(fr);
+        mostCommonChar = vb.mostCommonCharIn(portugueseDictionary);
+        assertEquals('a', mostCommonChar);
+    }
 }

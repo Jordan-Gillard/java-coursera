@@ -2,6 +2,7 @@ package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class VigenereBreaker {
@@ -70,5 +71,24 @@ public class VigenereBreaker {
         System.out.println("Word Count: " + bestWordCount);
         System.out.println("Key length: " + bestKey);
         return decryptedMessage;
+    }
+
+    public char mostCommonCharIn(HashSet<String> dictionary) {
+        HashMap<Character, Integer> charCounts = new HashMap<Character, Integer>();
+        for (String word : dictionary) {
+            for (int i=0; i<word.length(); i++) {
+                char letter = word.charAt(i);
+                charCounts.put(letter, charCounts.getOrDefault(letter, 0) + 1);
+            }
+        }
+        char maxChar = 'a';
+        int maxVal = 0;
+        for (char key : charCounts.keySet()) {
+            if (charCounts.get(key) > maxVal) {
+                maxVal = charCounts.get(key);
+                maxChar = key;
+            }
+        }
+        return maxChar;
     }
 }
