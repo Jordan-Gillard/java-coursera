@@ -3,7 +3,7 @@ package breaking_vigenere_cypher;
 import edu.duke.FileResource;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CaesarCrackerTest {
     @Test

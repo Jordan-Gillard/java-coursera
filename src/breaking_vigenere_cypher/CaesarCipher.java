@@ -1,9 +1,9 @@
 package breaking_vigenere_cypher;
 
 public class CaesarCipher {
+    private final int theKey;
     private String alphabet;
     private String shiftedAlphabet;
-    private final int theKey;
 
     public CaesarCipher(int key) {
         theKey = key;

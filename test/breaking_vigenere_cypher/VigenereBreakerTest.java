@@ -3,10 +3,8 @@ package breaking_vigenere_cypher;
 import edu.duke.FileResource;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -86,14 +84,7 @@ class VigenereBreakerTest {
     @Test
     void breakForAllLangs() {
         VigenereBreaker vb = new VigenereBreaker();
-        HashMap<String, HashSet<String>> languages = new HashMap<String, HashSet<String>>();
-        File languageDir = new File("test/breaking_vigenere_cypher/dictionaries");
-        for (File file : Objects.requireNonNull(languageDir.listFiles())) {
-            String languageName = file.getName();
-            FileResource fr = new FileResource(file);
-            HashSet<String> words = vb.readDictionary(fr);
-            languages.put(languageName, words);
-        }
+        HashMap<String, HashSet<String>> languages = vb.getAllDictionaries("test/breaking_vigenere_cypher/dictionaries");
         String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
         String[] detectedLanguageAndMessage = vb.breakForAllLangs(encryptedMessage, languages);
         String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
