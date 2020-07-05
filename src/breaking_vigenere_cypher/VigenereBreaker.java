@@ -91,4 +91,22 @@ public class VigenereBreaker {
         }
         return maxChar;
     }
+
+    public String[] breakForAllLangs(String encrypted, HashMap<String, HashSet<String>> languages) {
+        String bestDecryptedMessage = "";
+        int bestWordCount = -1;
+        String bestLanguage = "";
+        for (String language : languages.keySet()) {
+            String decryptedMessage = breakForLanguage(encrypted, languages.get(language));
+            int wordCount = countWords(decryptedMessage, languages.get(language));
+            if (wordCount > bestWordCount) {
+                bestWordCount = wordCount;
+                bestDecryptedMessage = decryptedMessage;
+                bestLanguage = language;
+            }
+        }
+//        System.out.println("Message is written in " + bestLanguage + ". Message is:");
+//        System.out.println(bestDecryptedMessage);
+        return new String[]{bestLanguage, bestDecryptedMessage};
+    }
 }
