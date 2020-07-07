@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CaesarCipherTest {
     @Test
     public void testCaesarCipher() {
-        FileResource fr = new FileResource("test/breaking_vigenere_cypher/text_files/titus-small.txt");
+        FileResource fr = new FileResource("src/test/breaking_vigenere_cypher/text_files/titus-small.txt");
         String message = fr.asString();
         CaesarCipher cc = new CaesarCipher(10);
         String encryptedMessage = cc.encrypt(message);

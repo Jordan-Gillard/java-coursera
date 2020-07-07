@@ -85,7 +85,7 @@ class VigenereBreakerTest {
     @Test
     void breakForAllLangs() {
         VigenereBreaker vb = new VigenereBreaker();
-        HashMap<String, HashSet<String>> languages = vb.getAllDictionaries("test/breaking_vigenere_cypher/dictionaries");
+        HashMap<String, HashSet<String>> languages = vb.getAllDictionaries("src/test/breaking_vigenere_cypher/dictionaries");
         String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
         String[] detectedLanguageAndMessage = vb.breakForAllLangs(encryptedMessage, languages);
         String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
