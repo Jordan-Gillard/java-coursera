@@ -1,6 +1,7 @@
 package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
+import main.java.breaking_vigenere_cypher.CaesarCracker;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

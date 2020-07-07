@@ -1,6 +1,7 @@
 package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
+import main.java.breaking_vigenere_cypher.VigenereBreaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

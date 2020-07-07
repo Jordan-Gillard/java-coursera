@@ -1,4 +1,4 @@
-package breaking_vigenere_cypher;
+package main.java.breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
 
