@@ -1,7 +1,6 @@
 package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
-import main.java.breaking_vigenere_cypher.VigenereCipher;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +11,7 @@ class VigenereCipherTest {
     public void testEncryptAndDecryptMessageWithKeyRome() {
         int[] key = {17, 14, 12, 4};
         VigenereCipher vc = new VigenereCipher(key);
-        FileResource fr = new FileResource("resources/text_files/titus-small.txt");
+        FileResource fr = new FileResource("text_files/titus-small.txt");
         String message = fr.asString();
         String encryptedMessage = vc.encrypt(message);
         String expectedBeginning = "Tcmp-pxety mj nikhqv htee mrfhtii tyv";

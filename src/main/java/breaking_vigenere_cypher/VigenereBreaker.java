@@ -1,4 +1,4 @@
-package main.java.breaking_vigenere_cypher;
+package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
 
@@ -29,7 +29,8 @@ public class VigenereBreaker {
 
     public void breakVigenere() {
         String encryptedMessage = new FileResource().asString();
-        HashMap<String, HashSet<String>> languages = getAllDictionaries("test/breaking_vigenere_cypher/dictionaries");
+        File languageDir = new File("dictionaries");
+        HashMap<String, HashSet<String>> languages = getAllDictionaries(languageDir);
         String[] languageMessage = breakForAllLangs(encryptedMessage, languages);
         String language = languageMessage[0];
         String message = languageMessage[1];
@@ -111,9 +112,8 @@ public class VigenereBreaker {
         return new String[]{bestLanguage, bestDecryptedMessage};
     }
 
-    public HashMap<String, HashSet<String>> getAllDictionaries(String filepath) {
+    public HashMap<String, HashSet<String>> getAllDictionaries(File languageDir) {
         HashMap<String, HashSet<String>> languages = new HashMap<String, HashSet<String>>();
-        File languageDir = new File(filepath);
         for (File file : Objects.requireNonNull(languageDir.listFiles())) {
             String languageName = file.getName();
             FileResource fr = new FileResource(file);

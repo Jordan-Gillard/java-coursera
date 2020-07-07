@@ -1,7 +1,6 @@
 package breaking_vigenere_cypher;
 
 import edu.duke.FileResource;
-import main.java.breaking_vigenere_cypher.CaesarCipher;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CaesarCipherTest {
     @Test
     public void testCaesarCipher() {
-        FileResource fr = new FileResource("resources/text_files/titus-small.txt");
+        FileResource fr = new FileResource("text_files/titus-small.txt");
         String message = fr.asString();
         CaesarCipher cc = new CaesarCipher(10);
         String encryptedMessage = cc.encrypt(message);

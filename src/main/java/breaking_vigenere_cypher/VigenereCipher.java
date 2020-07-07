@@ -1,4 +1,4 @@
-package main.java.breaking_vigenere_cypher;
+package breaking_vigenere_cypher;
 
 import java.util.Arrays;
 
