@@ -12,7 +12,7 @@ class VigenereCipherTest {
     public void testEncryptAndDecryptMessageWithKeyRome() {
         int[] key = {17, 14, 12, 4};
         VigenereCipher vc = new VigenereCipher(key);
-        FileResource fr = new FileResource("breaking_vigenere_cypher/text_files/titus-small.txt");
+        FileResource fr = new FileResource("resources/text_files/titus-small.txt");
         String message = fr.asString();
         String encryptedMessage = vc.encrypt(message);
         String expectedBeginning = "Tcmp-pxety mj nikhqv htee mrfhtii tyv";

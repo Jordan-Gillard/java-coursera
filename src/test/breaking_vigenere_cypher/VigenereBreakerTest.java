@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VigenereBreakerTest {
     @Test
-    void sliceString() {
+    void testSliceString() {
         VigenereBreaker vb = new VigenereBreaker();
         String message = "abcdefghijklm";
         assertEquals(vb.sliceString(message, 0, 3), "adgjm");
@@ -28,9 +28,9 @@ class VigenereBreakerTest {
     }
 
     @Test
-    void tryKeyLength() {
+    void testTryKeyLength() {
         int[] expected = {5, 11, 20, 19, 4};
-        FileResource fr = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt");
+        FileResource fr = new FileResource("resources/text_files/athens_keyflute.txt");
         String encryptedString = fr.asString();
         VigenereBreaker vb = new VigenereBreaker();
         int[] keys = vb.tryKeyLength(encryptedString, 5, 'e');
@@ -38,9 +38,9 @@ class VigenereBreakerTest {
     }
 
     @Test
-    void readDictionary() {
+    void testReadDictionary() {
         VigenereBreaker vb = new VigenereBreaker();
-        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        FileResource fr = new FileResource("resources/dictionaries/English");
         HashSet<String> englishDictionary = vb.readDictionary(fr);
         assertEquals(72053, englishDictionary.size());
         assertTrue(englishDictionary.contains("undermining"));
@@ -48,47 +48,47 @@ class VigenereBreakerTest {
     }
 
     @Test
-    void countWords() {
+    void testCountWords() {
         VigenereBreaker vb = new VigenereBreaker();
-        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        FileResource fr = new FileResource("resources/dictionaries/English");
         HashSet<String> englishDictionary = vb.readDictionary(fr);
-        String message = new FileResource("breaking_vigenere_cypher/text_files/titus-small.txt").asString();
+        String message = new FileResource("resources/text_files/titus-small.txt").asString();
         int wordCount = vb.countWords(message, englishDictionary);
         assertEquals(39, wordCount);
     }
 
     @Test
-    void breakForLanguage() {
-        String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
-        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+    void testBreakForLanguage() {
+        String encryptedMessage = new FileResource("resources/text_files/athens_keyflute.txt").asString();
+        FileResource fr = new FileResource("resources/dictionaries/English");
         VigenereBreaker vb = new VigenereBreaker();
         HashSet<String> englishDictionary = vb.readDictionary(fr);
         String unencryptedMessage = vb.breakForLanguage(encryptedMessage, englishDictionary);
-        String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
+        String expected = new FileResource("resources/text_files/athens.txt").asString();
         assertEquals(expected, unencryptedMessage);
     }
 
     @Test
-    void mostCommonCharIn() {
+    void testMostCommonCharIn() {
         VigenereBreaker vb = new VigenereBreaker();
-        FileResource fr = new FileResource("breaking_vigenere_cypher/dictionaries/English");
+        FileResource fr = new FileResource("resources/dictionaries/English");
         HashSet<String> englishDictionary = vb.readDictionary(fr);
         char mostCommonChar = vb.mostCommonCharIn(englishDictionary);
         assertEquals('e', mostCommonChar);
 
-        fr = new FileResource("breaking_vigenere_cypher/dictionaries/Portuguese");
+        fr = new FileResource("resources/dictionaries/Portuguese");
         HashSet<String> portugueseDictionary = vb.readDictionary(fr);
         mostCommonChar = vb.mostCommonCharIn(portugueseDictionary);
         assertEquals('a', mostCommonChar);
     }
 
     @Test
-    void breakForAllLangs() {
+    void testBreakForAllLangs() {
         VigenereBreaker vb = new VigenereBreaker();
-        HashMap<String, HashSet<String>> languages = vb.getAllDictionaries("src/test/breaking_vigenere_cypher/dictionaries");
-        String encryptedMessage = new FileResource("breaking_vigenere_cypher/text_files/athens_keyflute.txt").asString();
+        HashMap<String, HashSet<String>> languages = vb.getAllDictionaries("src/test/resources/dictionaries");
+        String encryptedMessage = new FileResource("resources/text_files/athens_keyflute.txt").asString();
         String[] detectedLanguageAndMessage = vb.breakForAllLangs(encryptedMessage, languages);
-        String expected = new FileResource("breaking_vigenere_cypher/text_files/athens.txt").asString();
+        String expected = new FileResource("resources/text_files/athens.txt").asString();
         assertArrayEquals(detectedLanguageAndMessage, new String[]{"English", expected});
     }
 }
