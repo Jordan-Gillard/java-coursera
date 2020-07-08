@@ -39,7 +39,7 @@ public class ClosestQuakes {
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         String source = "data/nov20quakedatasmall.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
-        System.out.println("read data for " + list.size());
+        System.out.println("read data for " + list.size() + " quakes.");
 
         Location jakarta = new Location(-6.211, 106.845);
         int howMany = 3;
