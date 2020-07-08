@@ -107,4 +107,45 @@ public class EarthQuakeClient {
         System.out.println(filteredQuakes);
         System.out.println("Found " + filteredQuakes.size() + " that match the criteria.");
     }
+
+    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
+        ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
+        for (QuakeEntry qe : quakeData) {
+            String name = qe.getInfo();
+            if (where.equals("start")) {
+                if (name.startsWith(phrase)) {
+                    answer.add(qe);
+                }
+            }
+            else if (where.equals("end")) {
+                if (name.endsWith(phrase)) {
+                    answer.add(qe);
+                }
+            }
+            else {
+                if (name.contains(phrase)) {
+                    answer.add(qe);
+                }
+            }
+        }
+        return answer;
+    }
+
+    public void quakesByPhrase() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedatasmall.atom";
+        ArrayList<QuakeEntry> allQuakes = parser.read(source);
+        System.out.println("Read data for " + allQuakes.size() + " quakes.");
+        String phrase = "California";
+        String where = "end";
+        ArrayList<QuakeEntry> filteredQuakes = filterByPhrase(allQuakes, where, phrase);
+        System.out.println(filteredQuakes);
+        System.out.println("Found " + filteredQuakes.size() + " that match the criteria.");
+        phrase = "Can";
+        where = "any";
+        System.out.println("Searching using keyword 'can' and where being 'any'.");
+        filteredQuakes = filterByPhrase(allQuakes, where, phrase);
+        System.out.println(filteredQuakes);
+        System.out.println("Found " + filteredQuakes.size() + " that match the criteria.");
+    }
 }
